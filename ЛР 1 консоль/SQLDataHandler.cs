@@ -18,7 +18,7 @@ namespace Server
         {
             try
             {
-                using var context = new CherezovAisContext();
+                using var context = new OpticsDbConnectionStringContext();
                 var entities = context.Set<ProductDatum>();
                 entities.Remove(entities.OrderBy(x => x.ProductName).ToList().ElementAt(position));
                 context.SaveChanges();
@@ -28,7 +28,7 @@ namespace Server
 
         public override List<ProductData> LoadAll()
         {
-            using var context = new CherezovAisContext();
+            using var context = new OpticsDbConnectionStringContext();
             var entities = context.Set<ProductDatum>();
             List<ProductData> prList = new List<ProductData>();
             foreach (var ent in entities.OrderBy(x => x.ProductName).ToList())
@@ -40,7 +40,7 @@ namespace Server
 
         public override ProductData LoadByNumber(int position)
         {
-            using var context = new CherezovAisContext();
+            using var context = new OpticsDbConnectionStringContext();
             var entities = context.Set<ProductDatum>();
             List<ProductData> prList = new List<ProductData>();
             foreach (var ent in entities.OrderBy(x => x.ProductName).ToList())
@@ -62,7 +62,7 @@ namespace Server
 
         public override void SaveOrUpdateProduct(ProductData prod, int pos)
         {
-            using var context = new CherezovAisContext();
+            using var context = new OpticsDbConnectionStringContext();
             var entities = context.Set<ProductDatum>();
             if (pos >= entities.Count()) {
                 try
